@@ -8,12 +8,16 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/target.mk
 
 PKG_NAME:=musl
-PKG_VERSION:=1.1.24
-PKG_RELEASE:=2
+# ZDY: downgrade to 1.1.16 to match target board.
+# otherwise vpp will failed to find the getrandom symbol because
+# it's defined in 1.1.24 but missing in actually board contained
+# 1.1.16.
+PKG_VERSION:=1.1.16
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=ea9525c8bcf6170df59364c4bcd616de1acf8703
+PKG_SOURCE_VERSION:=8fe1f2d79b275b7f7fb0d41c99e379357df63cd9
 PKG_MIRROR_HASH:=6975c45b9bfe586ac00dbfcd1b1a13ab110af0528028ab3dee03e23e2c0763e5
 PKG_SOURCE_URL:=git://git.musl-libc.org/musl
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.xz
